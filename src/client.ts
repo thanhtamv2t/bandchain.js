@@ -39,21 +39,21 @@ export default class Client {
   serviceClient: ServiceClient
   authQueryClient: AuthQueryClient
   txServiceClient: TxServiceClient
-  constructor(grpcUrl: string) {
+  constructor(grpcUrl: string, transporter = NodeHttpTransport) {
     this.queryClient = new QueryClient(grpcUrl, {
-      transport: NodeHttpTransport(),
+      transport: transporter(),
     })
 
     this.serviceClient = new ServiceClient(grpcUrl, {
-      transport: NodeHttpTransport(),
+      transport: transporter(),
     })
 
     this.authQueryClient = new AuthQueryClient(grpcUrl, {
-      transport: NodeHttpTransport(),
+      transport: transporter(),
     })
 
     this.txServiceClient = new TxServiceClient(grpcUrl, {
-      transport: NodeHttpTransport(),
+      transport: transporter(),
     })
   }
 
